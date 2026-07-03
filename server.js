@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const DB_PATH = path.join(__dirname, 'database.json');
+const DB_PATH = '/app/data/database.json';
 
 // Middleware
 app.use(express.json());
@@ -29,6 +29,10 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'akugipweyehehe';
 
 // Database helper functions
 function initDB() {
+  const dataDir = '/app/data';
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
   if (!fs.existsSync(DB_PATH)) {
     const initialData = {
       status: 'active', // 'active', 'finished'
