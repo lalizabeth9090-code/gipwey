@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Gipwey Interaktif</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Background Decorative Blobs -->
+  <div class="background-glow">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <!-- Admin Login Overlay -->
+  <div class="admin-login-overlay" id="login-overlay">
+    <div class="panel admin-login-card">
+      <h2 class="panel-title" style="justify-content: center; font-size: 1.8rem; margin-bottom: 2rem;">
+        <i class="fa-solid fa-user-shield"></i> Admin Login
+      </h2>
+      <div id="login-alert-container"></div>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="admin-password">Password Admin</label>
+          <div class="input-wrapper">
+            <input type="password" id="admin-password" class="input-control" placeholder="Masukkan password admin" required>
+            <i class="fa-solid fa-key"></i>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="login-btn" style="margin-top: 1.5rem;">
+          <i class="fa-solid fa-right-to-bracket"></i> Masuk
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main Admin Dashboard Content -->
+  <header>
+    <div class="admin-header">
+      <div class="admin-logo">
+        <i class="fa-solid fa-user-gear"></i> GIPWEY ADMIN
+      </div>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <a href="index.html" class="btn btn-secondary" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem;">
+          <i class="fa-solid fa-arrow-left"></i> Lihat Web Public
+        </a>
+        <button id="logout-btn" class="btn btn-secondary" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem; background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); color: #f87171;">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="grid-template-columns: 1fr; max-width: 1200px;">
+    <!-- Stats Section -->
+    <section class="admin-stats-bar">
+      <div class="stat-card">
+        <div style="color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase;">Total Peserta</div>
+        <div class="stat-val" id="stat-total">0 / 100</div>
+      </div>
+      <div class="stat-card">
+        <div style="color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase;">Status Giveaway</div>
+        <div class="stat-val" id="stat-status" style="font-weight: 700;">Loading...</div>
+      </div>
+      <div class="stat-card">
+        <div style="color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase;">Jumlah Pemenang</div>
+        <div class="stat-val" id="stat-winners-count">0</div>
+      </div>
+    </section>
+
+    <!-- Draw and Control Panel -->
+    <section class="panel" id="control-panel" style="margin-bottom: 2rem;">
+      <h2 class="panel-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Kontrol Pengundian (Gacha)</h2>
+      <div id="action-alert-container"></div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: flex-end;">
+        <div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="winner-count">Jumlah Pemenang yang Ingin Diacak</label>
+            <div class="input-wrapper">
+              <input type="number" id="winner-count" class="input-control" value="1" min="1" max="100">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <button id="draw-btn" class="btn btn-primary" style="flex: 2; height: 48px;">
+            <i class="fa-solid fa-dice"></i> ACAK PEMENANG!
+          </button>
+          <button id="reset-btn" class="btn btn-secondary" style="flex: 1; height: 48px; background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #f87171;">
+            <i class="fa-solid fa-trash-arrow-up"></i> RESET DATA
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Participants List Table -->
+    <section class="panel">
+      <h2 class="panel-title"><i class="fa-solid fa-list-check"></i> Data Detail Pendaftar (Hanya Admin)</h2>
+      <div class="admin-table-container">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 60px;">No</th>
+              <th style="width: 200px;">Nama</th>
+              <th style="width: 180px;">Nomor WhatsApp</th>
+              <th>Kata-Kata/Pesan</th>
+              <th style="width: 120px;">Waktu Daftar</th>
+            </tr>
+          </thead>
+          <tbody id="admin-table-body">
+            <tr>
+              <td colspan="5" style="text-align: center; color: var(--text-secondary); padding: 3rem;">
+                <i class="fa-solid fa-spinner spinner" style="font-size: 1.5rem; margin-bottom: 1rem; display: block;"></i> Loading data peserta...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Gipwey Interaktif. Halaman Admin Terproteksi.</p>
+  </footer>
+
+  <script src="admin.js"></script>
+</body>
+</html>

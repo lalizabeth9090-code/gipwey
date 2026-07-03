@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gipwey Interaktif - Ikuti & Menangkan!</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Background Decorative Blobs -->
+  <div class="background-glow">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Confetti Canvas for Celebrations -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <header>
+    <div class="logo-container">
+      <h1><i class="fa-solid fa-gift"></i> GIPWEY SPESIAL</h1>
+    </div>
+    <p>Ikuti giveaway gratis ini! Cukup masukkan nama dan nomor WhatsApp Anda, lalu tuliskan kata-kata menarik Anda. Pemenang akan diacak secara live oleh admin!</p>
+    
+    <div class="slots-badge" id="slots-badge">
+      <span></span> <span id="slots-text">Loading kuota...</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- Left Column: Form Registration or Winner Announcement -->
+    <section class="form-section">
+      <!-- Winner Card (Hidden by default, shown when status is finished) -->
+      <div id="winner-container" style="display: none;">
+        <!-- Card content populated dynamically -->
+      </div>
+
+      <!-- Registration Form Panel -->
+      <div class="panel" id="registration-panel">
+        <h2 class="panel-title"><i class="fa-solid fa-user-plus"></i> Form Pendaftaran</h2>
+        
+        <div id="alert-container"></div>
+
+        <form id="registration-form">
+          <div class="form-group">
+            <label for="name">Nama Lengkap</label>
+            <div class="input-wrapper">
+              <input type="text" id="name" name="name" class="input-control" placeholder="Masukkan nama panggilan / nama lengkap" required maxlength="30">
+              <i class="fa-solid fa-user"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="whatsapp">Nomor WhatsApp</label>
+            <div class="input-wrapper">
+              <input type="tel" id="whatsapp" name="whatsapp" class="input-control" placeholder="Contoh: 08123456789" required>
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.4rem;">
+              <i class="fa-solid fa-lock"></i> Nomor WhatsApp Anda <strong>disembunyikan</strong> dan hanya bisa dilihat oleh admin.
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Kata-Kata Menarik</label>
+            <div class="input-wrapper">
+              <textarea id="message" name="message" class="input-control" placeholder="Tulis pesan unik Anda untuk dipajang di papan..." required maxlength="150"></textarea>
+              <i class="fa-solid fa-quote-left" style="top: 1.2rem; transform: none;"></i>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="submit-btn">
+            <i class="fa-solid fa-paper-plane"></i> Daftar Sekarang
+          </button>
+        </form>
+      </div>
+
+      <!-- Registration Closed Panel (Shown when finished but winner container has specific placement) -->
+      <div class="panel" id="closed-panel" style="display: none; margin-top: 1.5rem;">
+        <h2 class="panel-title" style="color: var(--danger-color);"><i class="fa-solid fa-circle-xmark"></i> Pendaftaran Ditutup</h2>
+        <p style="color: var(--text-secondary);">Giveaway ini sudah ditutup karena pemenang telah diundi oleh admin. Lihat hasil undian di atas!</p>
+      </div>
+    </section>
+
+    <!-- Right Column: Participant List -->
+    <section class="list-section">
+      <div class="panel" style="height: 100%; display: flex; flex-direction: column;">
+        <h2 class="panel-title">
+          <i class="fa-solid fa-users"></i> Peserta Terdaftar
+          <span id="participants-count" style="font-size: 1rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.6rem; border-radius: 12px; margin-left: auto;">0</span>
+        </h2>
+        
+        <div class="participants-grid" id="participants-grid">
+          <!-- Participants cards will be added here dynamically -->
+          <div class="no-participants">
+            <i class="fa-solid fa-users-slash"></i>
+            <p>Belum ada peserta yang mendaftar. Jadilah yang pertama!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Gipwey Interaktif. Semua hak dilindungi. | <a href="admin.html"><i class="fa-solid fa-user-shield"></i> Halaman Admin</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
